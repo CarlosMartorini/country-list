@@ -6,11 +6,15 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { FilterContainer, StyledButton, List } from "./styles";
+import Pagination from '../../components/Pagination';
 
 const Home = () => {
 
     const [ selectFilter, setSelectFilter ] = useState('');
     const [ inputSearch, setInputSearch ] = useState('')
+    
+    const [ currentPage, setCurrentPage ] = useState(1);
+    const [ countriesPerPage ] = useState(10);
 
     const {
         countries, 
@@ -22,6 +26,10 @@ const Home = () => {
         callingCodeFilter,
         languageFilter
     } = useCountries();
+
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry)
 
     const handleButton = () => {
         if (selectFilter === 'region') {
@@ -40,6 +48,10 @@ const Home = () => {
             console.log(`Language choose ${inputSearch} typed`)
             return languageFilter(inputSearch)
         } 
+    }
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
     }
 
     useEffect(() => {
@@ -81,7 +93,7 @@ const Home = () => {
                 {
                     filteredList === undefined ?
 
-                    countries.map((country, index) => (
+                    currentCountries.map((country, index) => (
                         <li key={index}><img src={country.flag} alt={country.name}/></li>
                     ))
 
@@ -92,6 +104,7 @@ const Home = () => {
                     ))
                 }
             </List>
+            <Pagination countryPerPage={countriesPerPage} totalCountries={countries.length} paginate={paginate}/>
         </>
     );
 }
