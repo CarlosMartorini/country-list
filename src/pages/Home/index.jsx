@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import { useCountries } from '../../providers/countries';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import { FilterContainer, StyledButton, List } from "./styles";
 
 const Home = () => {
 
@@ -36,41 +42,51 @@ const Home = () => {
         getCountries()
     }, [])
 
+    console.log(filteredList)
+
     return (
         <>
-            <select
-                value={selectFilter} 
-                onChange={(event) => setSelectFilter(event.target.value)}
-                placeholder='Select a filter type'
-            >
-                <option value='region'>Region</option>
-                <option value='capital'>Capital</option>
-                <option value='country' default>Country</option>
-                <option value='callingcode'>Calling Code</option>
-            </select>
-            <input
-                value={inputSearch} 
-                onChange={(event) => setInputSearch(event.target.value)}
-                placeholder='Enter your search...'
-            />
-            <button
-                onClick={() => handleButton(inputSearch)}
-            >Search</button>
-            <ul>
+            <FilterContainer>
+                <FormControl className='select_input'>
+                    <InputLabel>Select a filter type</InputLabel>
+                    <Select
+                        value={selectFilter} 
+                        onChange={(event) => setSelectFilter(event.target.value)}
+                        placeholder='Select a filter type'
+                        defaultValue='country'
+                        style={{width: '200px'}}
+                    >
+                        <MenuItem value='region'>Region</MenuItem>
+                        <MenuItem value='capital'>Capital</MenuItem>
+                        <MenuItem value='country' default>Country</MenuItem>
+                        <MenuItem value='callingcode'>Calling Code</MenuItem>
+                    </Select>
+                </FormControl>
+                <TextField
+                    value={inputSearch} 
+                    onChange={(event) => setInputSearch(event.target.value)}
+                    label='Enter your search...'
+                    style={{width: '250px'}}
+                />
+                <StyledButton
+                    onClick={() => handleButton(inputSearch)}
+                >Search</StyledButton>
+            </FilterContainer>
+            <List>
                 {
                     filteredList === undefined ?
 
                     countries.map((country, index) => (
-                        <li key={index}>{country.name}</li>
+                        <li key={index}><img src={country.flag} alt={country.name}/></li>
                     ))
 
                     :
 
                     filteredList.map((country, index) => (
-                        <li key={index}>{country.name}</li>
+                        <li key={index}><img src={country.flag} alt={country.name}/></li>
                     ))
                 }
-            </ul>
+            </List>
         </>
     );
 }
