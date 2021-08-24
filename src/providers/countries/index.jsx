@@ -6,6 +6,7 @@ const CountriesContext = createContext()
 export const CountriesProvider = ({ children }) => {
 
     const [countries, setCountries ] = useState([]);
+    const [filteredList, setFilteredList] = useState();
 
     const getCountries = () => {
         api.get('/all')
@@ -13,33 +14,38 @@ export const CountriesProvider = ({ children }) => {
     }
 
     const regionFilter = (searchInput) => {
-        return countries.filter(
+        let search = countries.filter(
             (countrie) => { return countrie.region === searchInput}
         );
+        setFilteredList(search);
     }
 
     const capitalFilter = (searchInput) => {
-        return countries.filter(
+        let search = countries.filter(
             (countrie) => { return countrie.capital === searchInput}
         );
+        setFilteredList(search);
     }
 
     const countryFilter = (searchInput) => {
-        return countries.filter(
+        let search = countries.filter(
             (countrie) => { return countrie.name === searchInput}
         );
+        setFilteredList(search);
     }
 
     const callingCodeFilter = (searchInput) => {
-        return countries.filter(
+        let search = countries.filter(
             (countrie) => { return countrie.callingCodes.includes(searchInput)}
         );
+        setFilteredList(search);
     }
 
     return (
         <CountriesContext.Provider
             value = {{
                 countries,
+                filteredList,
                 getCountries,
                 regionFilter,
                 capitalFilter,
