@@ -1,11 +1,13 @@
 import logo from '../../assets/logo_principal.png'
+import { ContainerBar } from'./styles';
+import { IoReturnDownBackSharp } from 'react-icons/io5'
 
 const HeaderBar = () => {
     return (
-        <div>
+        <ContainerBar>
             <img src={logo} alt='logo'/>
-            <button>Voltar</button>
-        </div>
+            <button><IoReturnDownBackSharp/> Voltar</button>
+        </ContainerBar>
     );
 };
 
