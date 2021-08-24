@@ -19,7 +19,8 @@ const Home = () => {
         regionFilter,
         capitalFilter,
         countryFilter,
-        callingCodeFilter 
+        callingCodeFilter,
+        languageFilter
     } = useCountries();
 
     const handleButton = () => {
@@ -35,7 +36,10 @@ const Home = () => {
         } else if (selectFilter === 'callingcode') {
             console.log(`Calling Code choose ${inputSearch} typed`)
             return callingCodeFilter(inputSearch)
-        }   
+        } else if (selectFilter === 'language') {
+            console.log(`Language choose ${inputSearch} typed`)
+            return languageFilter(inputSearch)
+        } 
     }
 
     useEffect(() => {
@@ -60,6 +64,7 @@ const Home = () => {
                         <MenuItem value='capital'>Capital</MenuItem>
                         <MenuItem value='country' default>Country</MenuItem>
                         <MenuItem value='callingcode'>Calling Code</MenuItem>
+                        <MenuItem value='language'>Language</MenuItem>
                     </Select>
                 </FormControl>
                 <TextField

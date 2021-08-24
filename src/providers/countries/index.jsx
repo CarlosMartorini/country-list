@@ -41,6 +41,13 @@ export const CountriesProvider = ({ children }) => {
         setFilteredList(search);
     }
 
+    const languageFilter = (searchInput) => {
+        let search = countries.filter(
+            (countrie) => { return countrie.languages.map((language) => { return language.name === searchInput})}
+        );
+        setFilteredList(search);
+    }
+
     return (
         <CountriesContext.Provider
             value = {{
@@ -50,7 +57,8 @@ export const CountriesProvider = ({ children }) => {
                 regionFilter,
                 capitalFilter,
                 countryFilter,
-                callingCodeFilter
+                callingCodeFilter,
+                languageFilter
             }}
         >
             {children}
