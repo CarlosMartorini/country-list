@@ -23,10 +23,10 @@ export const List = styled.ul`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 
     li{
-        padding: 3rem 7rem;
+        padding: 3rem;
         list-style: none;
 
         img{
