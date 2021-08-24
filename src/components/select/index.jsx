@@ -1,14 +1,8 @@
-import { useState } from 'react';
-
-const SelectSearch = () => {
-
-    const [ selectFilter, setSelectFilter ] = useState('');
+const SelectSearch = ({ rest }) => {
 
     return (
         <select 
-            value={selectFilter} 
-            onChange={(event) => setSelectFilter(event.target.value)}
-            placeholder='Select a filter type'
+            {...rest}
         >
             <option value='region'>Region</option>
             <option value='capital'>Capital</option>

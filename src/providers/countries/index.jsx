@@ -12,11 +12,39 @@ export const CountriesProvider = ({ children }) => {
         .then((response) => setCountries(response.data))
     }
 
+    const regionFilter = (searchInput) => {
+        return countries.filter(
+            (countrie) => { return countrie.region === searchInput}
+        );
+    }
+
+    const capitalFilter = (searchInput) => {
+        return countries.filter(
+            (countrie) => { return countrie.capital === searchInput}
+        );
+    }
+
+    const countryFilter = (searchInput) => {
+        return countries.filter(
+            (countrie) => { return countrie.name === searchInput}
+        );
+    }
+
+    const callingCodeFilter = (searchInput) => {
+        return countries.filter(
+            (countrie) => { return countrie.callingCodes.includes(searchInput)}
+        );
+    }
+
     return (
         <CountriesContext.Provider
             value = {{
                 countries,
-                getCountries
+                getCountries,
+                regionFilter,
+                capitalFilter,
+                countryFilter,
+                callingCodeFilter
             }}
         >
             {children}

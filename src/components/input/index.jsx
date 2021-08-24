@@ -1,14 +1,8 @@
-import { useState } from 'react';
-
-const SearchInput = () => {
-
-    const [ inputSearch, setInputSearch ] = useState('')
+const SearchInput = ({ rest }) => {
 
     return (
         <input 
-            value={inputSearch} 
-            onChange={(event) => setInputSearch(event.target.value)}
-            placeholder='Enter your search...'
+            {...rest}
         />
     );
 };
