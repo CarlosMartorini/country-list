@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SelectSearch from "../../components/select";
 import SearchInput from "../../components/input";
 import ButtonSearch from "../../components/button";
@@ -6,16 +6,36 @@ import { useCountries } from '../../providers/countries';
 
 const Home = () => {
 
-    const { countries, getCountries } = useCountries();
+    const [ selectFilter, setSelectFilter ] = useState('');
+    const [ inputSearch, setInputSearch ] = useState('')
+
+    const {
+        countries, 
+        getCountries,
+        regionFilter,
+        capitalFilter,
+        countryFilter,
+        callingCodeFilter 
+    } = useCountries();
 
     useEffect(() => {
         getCountries()
     }, [])
 
+    
+
     return (
         <>
-            <SelectSearch/>
-            <SearchInput/>
+            <SelectSearch
+                value={selectFilter} 
+                onChange={(event) => setSelectFilter(event.target.value)}
+                placeholder='Select a filter type'
+            />
+            <SearchInput
+                value={inputSearch} 
+                onChange={(event) => setInputSearch(event.target.value)}
+                placeholder='Enter your search...'
+            />
             <ButtonSearch/>
             <ul>
                 {
