@@ -39,15 +39,15 @@ const Home = () => {
     filteredList.slice(indexOfFirstCountry, indexOfLastCountry)
 
     const handleButton = () => {
-        if (selectFilter === 'region') {
+        if (selectFilter === 'Região') {
             return regionFilter(inputSearch);
-        } else if (selectFilter === 'capital') {
+        } else if (selectFilter === 'Capital') {
             return capitalFilter(inputSearch);
-        } else if (selectFilter === 'country') {
+        } else if (selectFilter === 'País') {
             return countryFilter(inputSearch);
-        } else if (selectFilter === 'callingcode') {
+        } else if (selectFilter === 'Código de Ligação') {
             return callingCodeFilter(inputSearch)
-        } else if (selectFilter === 'language') {
+        } else if (selectFilter === 'Lingua') {
             return languageFilter(inputSearch)
         } 
     }
@@ -64,7 +64,7 @@ const Home = () => {
         <>
             <FilterContainer>
                 <FormControl className='select_input'>
-                    <InputLabel>Select a filter type</InputLabel>
+                    <InputLabel>Filtrar por</InputLabel>
                     <Select
                         value={selectFilter} 
                         onChange={(event) => setSelectFilter(event.target.value)}
@@ -72,19 +72,29 @@ const Home = () => {
                         defaultValue='country'
                         style={{width: '200px'}}
                     >
-                        <MenuItem value='region'>Region</MenuItem>
-                        <MenuItem value='capital'>Capital</MenuItem>
-                        <MenuItem value='country' default>Country</MenuItem>
-                        <MenuItem value='callingcode'>Calling Code</MenuItem>
-                        <MenuItem value='language'>Language</MenuItem>
+                        <MenuItem value='Região'>Região</MenuItem>
+                        <MenuItem value='Capital'>Capital</MenuItem>
+                        <MenuItem value='País'>País</MenuItem>
+                        <MenuItem value='Código de Ligação'>Código de Ligação</MenuItem>
+                        <MenuItem value='Lingua'>Lingua</MenuItem>
                     </Select>
                 </FormControl>
-                <TextField
-                    value={inputSearch} 
-                    onChange={(event) => setInputSearch(event.target.value)}
-                    label='Enter your search...'
-                    style={{width: '250px'}}
-                />
+                {
+                    selectFilter !== '' 
+                    
+                    ?
+
+                    <TextField
+                        value={inputSearch} 
+                        onChange={(event) => setInputSearch(event.target.value)}
+                        label={selectFilter}
+                        style={{width: '250px'}}
+                    />
+
+                    :
+
+                    <></>
+                }
                 <StyledButton
                     onClick={() => handleButton(inputSearch)}
                 >Search</StyledButton>
