@@ -5,4 +5,4 @@ The proposed activity is to create an integrated project with api (https://restc
 
 Access on vercel link:
 
-<a href='country-list-ebon.vercel.app/'>Vercel</a>
+<a href='country-list-ebon.vercel.app' target="_blank">Vercel</a>
