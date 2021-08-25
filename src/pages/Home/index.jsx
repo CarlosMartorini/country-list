@@ -59,7 +59,6 @@ const Home = () => {
     }
 
     const showInfoCountry = (list, countryId) => {
-        console.log(list[countryId]);
         setCardCountry(list[countryId]);
     }
 
@@ -67,12 +66,10 @@ const Home = () => {
         getCountries()
     }, [])
 
-    console.log(cardCountry)
-
     return (
         <>
             <FilterContainer>
-                <FormControl className='select_input'>
+                <FormControl>
                     <InputLabel>Filtrar por</InputLabel>
                     <Select
                         value={selectFilter} 

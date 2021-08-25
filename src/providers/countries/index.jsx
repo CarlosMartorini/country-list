@@ -43,7 +43,7 @@ export const CountriesProvider = ({ children }) => {
 
     const languageFilter = (searchInput) => {
         let search = countries.filter(
-            (countrie) => { return countrie.languages.map((language) => { return language.name === searchInput})}
+            (countrie) => countrie.languages.includes((language) => language.name === searchInput)
         );
         setFilteredList(search);
     }
