@@ -30,22 +30,24 @@ const Home = () => {
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry)
+    
+    const currentFilteredCountriesList = 
+    filteredList === undefined
+    ? 
+    undefined 
+    :
+    filteredList.slice(indexOfFirstCountry, indexOfLastCountry)
 
     const handleButton = () => {
         if (selectFilter === 'region') {
-            console.log(`Region choose ${inputSearch} typed`)
             return regionFilter(inputSearch);
         } else if (selectFilter === 'capital') {
-            console.log(`Capital choose ${inputSearch} typed`)
             return capitalFilter(inputSearch);
         } else if (selectFilter === 'country') {
-            console.log(`Country choose ${inputSearch} typed`)
             return countryFilter(inputSearch);
         } else if (selectFilter === 'callingcode') {
-            console.log(`Calling Code choose ${inputSearch} typed`)
             return callingCodeFilter(inputSearch)
         } else if (selectFilter === 'language') {
-            console.log(`Language choose ${inputSearch} typed`)
             return languageFilter(inputSearch)
         } 
     }
@@ -57,8 +59,6 @@ const Home = () => {
     useEffect(() => {
         getCountries()
     }, [])
-
-    console.log(filteredList)
 
     return (
         <>
@@ -91,7 +91,9 @@ const Home = () => {
             </FilterContainer>
             <List>
                 {
-                    filteredList === undefined ?
+                    currentFilteredCountriesList === undefined 
+                    
+                    ?
 
                     currentCountries.map((country, index) => (
                         <li key={index}><img src={country.flag} alt={country.name}/></li>
@@ -99,7 +101,7 @@ const Home = () => {
 
                     :
 
-                    filteredList.map((country, index) => (
+                    currentFilteredCountriesList.map((country, index) => (
                         <li key={index}><img src={country.flag} alt={country.name}/></li>
                     ))
                 }
