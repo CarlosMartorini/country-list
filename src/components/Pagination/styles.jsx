@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const PageUl = styled.ul`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
 
     li{

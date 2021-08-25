@@ -5,6 +5,15 @@ export const FilterContainer = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
     padding: 2rem;
+
+    @media(max-width: 700px){
+        flex-direction: column;
+        align-items: center;
+
+        input, select, button{
+            margin: 1.5rem 0;
+        }
+    }
 `
 
 export const StyledButton = styled.button`
@@ -28,10 +37,21 @@ export const List = styled.ul`
     li{
         padding: 3rem;
         list-style: none;
+        align-items: center;
 
         img{
             width: 316px;
             height: 181px;
+
+            @media(max-width: 700px) {
+                width: 260px;
+                height: 180px;
+            }
+        }
+
+        @media(max-width: 700px) {
+            padding: 1rem;
+            align-items: center;
         }
     }
 `

@@ -15,4 +15,22 @@ export const CardCountry = styled.div`
         color: #454545;
         font-size: 18px;
     }
+
+    @media(max-width: 700px) {
+
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        img{
+            padding: 0;
+            width: 260px;
+            height: 180px;
+        }
+
+        h5{
+            text-align: center;
+            font-size: 16px;
+        }
+    }
 `
