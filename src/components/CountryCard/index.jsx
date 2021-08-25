@@ -1,6 +1,8 @@
+import { CardCountry } from "./styles"
+
 const CountryCard = ({ country }) => {
     return (
-        <div>
+        <CardCountry>
             <div>
                 <img src={country.flag} alt={country.name}/>
             </div>
@@ -12,7 +14,7 @@ const CountryCard = ({ country }) => {
                 <h5>População: {country.population}</h5>
                 <h5>Linguas: {country.languages.map((language) => {return language.name})}</h5>
             </div>
-        </div>
+        </CardCountry>
     )
 }
 
