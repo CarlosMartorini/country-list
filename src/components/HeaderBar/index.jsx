@@ -3,10 +3,15 @@ import { ContainerBar } from'./styles';
 import { IoReturnDownBackSharp } from 'react-icons/io5'
 
 const HeaderBar = () => {
+
+    const handleButton = () => {
+        window.location.reload()
+    }
+
     return (
         <ContainerBar>
             <img src={logo} alt='logo'/>
-            <button><IoReturnDownBackSharp/> Voltar</button>
+            <button onClick={() => handleButton()}><IoReturnDownBackSharp/> Voltar</button>
         </ContainerBar>
     );
 };

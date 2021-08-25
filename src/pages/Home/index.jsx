@@ -106,7 +106,11 @@ const Home = () => {
                     ))
                 }
             </List>
-            <Pagination countryPerPage={countriesPerPage} totalCountries={countries.length} paginate={paginate}/>
+            <Pagination 
+                countryPerPage={countriesPerPage} 
+                totalCountries={filteredList === undefined ? countries.length : filteredList.length} 
+                paginate={paginate}
+            />
         </>
     );
 }
