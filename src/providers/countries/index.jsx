@@ -41,10 +41,20 @@ export const CountriesProvider = ({ children }) => {
         setFilteredList(search);
     }
 
+    const getLanguagesInCountry = (country) => {
+        let languages = country.filter((item) => item.languages);
+        return languages;
+    }
+
     const languageFilter = (searchInput) => {
-        let search = countries.filter(
-            (countrie) => countrie.languages.includes((language) => language.name === searchInput)
-        );
+        let search = []
+        for(let i = 0; i < countries.length; i++) {
+            let languages = countries[i].languages
+            let getLanguage = languages.map((language) => language.name)
+            if(getLanguage.map((item) => item === searchInput).includes(true)) {
+                search.push(countries[i])
+            }
+        }
         setFilteredList(search);
     }
 

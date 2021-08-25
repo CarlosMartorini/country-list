@@ -12,7 +12,7 @@ const CountryCard = ({ country }) => {
                 <h5>Região: {country.region}</h5>
                 <h5>Sub-região: {country.subregion}</h5>
                 <h5>População: {country.population}</h5>
-                <h5>Linguas: {country.languages.map((language) => {return language.name})}</h5>
+                <h5>Linguas: {country.languages.map((language) => {return `${language.name} `})}</h5>
             </div>
         </CardCountry>
     )
