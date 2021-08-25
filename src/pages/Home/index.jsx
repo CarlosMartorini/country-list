@@ -7,11 +7,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { FilterContainer, StyledButton, List } from "./styles";
 import Pagination from '../../components/Pagination';
+import CountryCard from "../../components/CountryCard";
 
 const Home = () => {
 
     const [ selectFilter, setSelectFilter ] = useState('');
     const [ inputSearch, setInputSearch ] = useState('')
+    const [ cardCountry, setCardCountry ] = useState();
     
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ countriesPerPage ] = useState(10);
@@ -56,9 +58,16 @@ const Home = () => {
         setCurrentPage(pageNumber);
     }
 
+    const showInfoCountry = (list, countryId) => {
+        console.log(list[countryId]);
+        setCardCountry(list[countryId]);
+    }
+
     useEffect(() => {
         getCountries()
     }, [])
+
+    console.log(cardCountry)
 
     return (
         <>
@@ -99,6 +108,17 @@ const Home = () => {
                     onClick={() => handleButton(inputSearch)}
                 >Search</StyledButton>
             </FilterContainer>
+            <div>
+                {
+                    cardCountry !== undefined ?
+                    
+                    <CountryCard country={cardCountry}/>
+
+                    :
+
+                    <></>
+                }
+            </div>
             <List>
                 {
                     currentFilteredCountriesList === undefined 
@@ -106,13 +126,21 @@ const Home = () => {
                     ?
 
                     currentCountries.map((country, index) => (
-                        <li key={index}><img src={country.flag} alt={country.name}/></li>
+                        <li key={index}>
+                            <a onClick={() => showInfoCountry(currentCountries, index)} href='!#'>
+                                <img src={country.flag} alt={country.name}/>
+                            </a>
+                        </li>
                     ))
 
                     :
 
                     currentFilteredCountriesList.map((country, index) => (
-                        <li key={index}><img src={country.flag} alt={country.name}/></li>
+                        <li key={index}>
+                            <a onClick={() => showInfoCountry(currentFilteredCountriesList, index)} href='!#'>
+                                <img src={country.flag} alt={country.name}/>
+                            </a>
+                        </li>
                     ))
                 }
             </List>
