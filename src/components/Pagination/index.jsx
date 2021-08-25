@@ -1,3 +1,5 @@
+import { PageUl } from './styles';
+
 const Pagination = ({ countryPerPage, totalCountries, paginate }) => {
     
     const pageNumber = [];
@@ -8,7 +10,7 @@ const Pagination = ({ countryPerPage, totalCountries, paginate }) => {
 
     return (
         <nav>
-            <ul>
+            <PageUl>
                 {
                     pageNumber.map((number) => (
                         <li key={number}>
@@ -18,7 +20,7 @@ const Pagination = ({ countryPerPage, totalCountries, paginate }) => {
                         </li>
                     ))
                 }
-            </ul>
+            </PageUl>
         </nav>
     );
 };
